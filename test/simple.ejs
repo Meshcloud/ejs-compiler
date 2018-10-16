@@ -1,0 +1,11 @@
+<%
+  const users = [
+    { name: 'alice' },
+    { name: 'bob' }
+  ];
+%>
+<ul>
+  <%_ users.forEach(function(user){ _%>
+    <%- include('include/show', {user: user}); %>
+  <%_ }); _%>
+</ul>
