@@ -1,11 +1,14 @@
 {
   "name": "ejs-compiler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An optionated EJS template compiler",
   "author": "Johannes Rudolph <jrudolph@meshcloud.io>",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "ejsc": "./dist/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Meshcloud/ejs-compiler"
