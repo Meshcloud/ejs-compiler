@@ -1,5 +1,5 @@
 {
-  "name": "ejsc",
+  "name": "ejs-compiler",
   "version": "1.0.0",
   "description": "An optionated EJS template compiler",
   "author": "Johannes Rudolph <jrudolph@meshcloud.io>",
@@ -8,13 +8,13 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Meshcloud/ejsc"
+    "url": "https://github.com/Meshcloud/ejs-compiler"
   },
   "scripts": {
     "lint": "tslint \"src/**/*.ts\"",
-    "prebuild": "lint",
+    "prebuild": "yarn lint",
     "build": "tsc",
-    "prepublish": "build"
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@types/ejs": "^2.6.0",
