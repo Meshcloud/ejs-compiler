@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as ejs from 'ejs';
@@ -7,13 +9,15 @@ import * as ejsLint from 'ejs-lint';
 import * as yargs from 'yargs';
 import { Arguments } from 'yargs';
 
-function render(templateFile: string, outFile: string) {
+function render(templateFile: string, outFile: string, userContext: {}) {
   const tag = `rendering ${templateFile}`;
   const options = {};
 
-  const ejsContext = {
+  const lodashContext = {
     _: _ // inject lodash
   };
+
+  const ejsContext = Object.assign({}, userContext || {}, lodashContext);
 
   try {
     console.time(tag);
@@ -57,7 +61,13 @@ function setupWatcher(path, cb) {
 }
 
 function main(args) {
-  const r = () => render(args.template, args.outFile);
+  let context = {};
+  if (args.context) {
+    const content = fs.readFileSync(args.context, 'utf-8');
+    context = JSON.parse(content);
+  }
+
+  const r = () => render(args.template, args.outFile, context);
 
   // render a first pass
   r();
@@ -80,15 +90,19 @@ yargs
   )
   .options({
     include: {
-      describe: 'include directory (globs **.ejs files)',
+      describe: 'path to include directory (globs **.ejs files)',
       demand: false
     },
     watch: {
       describe: 'continuously watch template and include dir for changes',
       demand: false
     },
+    context: {
+      describe: 'path to a json file with context data available in the template',
+      demand: false
+    },
     outFile: {
-      describe: 'output file',
+      describe: 'path to output file',
       demand: true
     }
   });

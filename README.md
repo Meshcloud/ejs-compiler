@@ -43,3 +43,10 @@ rendering test/simple.ejs: 0.729ms
 rendering test/simple.ejs: 2.098ms
 ...
 ```
+
+Make context data available to the template, e.g. `context.json`:
+
+```bash
+$ ejsc test/simple.ejs --context test/context.json --outFile simple
+rendering test/simple.ejs: 0.729ms
+```
