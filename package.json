@@ -1,6 +1,6 @@
 {
   "name": "ejs-compiler",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An optionated EJS template compiler",
   "author": "Johannes Rudolph <jrudolph@meshcloud.io>",
   "license": "MIT",

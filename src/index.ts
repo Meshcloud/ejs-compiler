@@ -78,6 +78,9 @@ function main(args) {
     if (args.include) {
       setupWatcher(`${args.include}/**.ejs`, r);
     }
+    if (args.context) {
+      setupWatcher(args.context, r);
+    }
   }
 }
 
